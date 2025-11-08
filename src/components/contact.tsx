@@ -20,7 +20,7 @@ const Contact = () => {
     if (!mapRef.current) return;
 
     const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyB-YZX3_b2i3bBeXbBLlTWvmw23PkKhnAY`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=`;
     script.async = true;
     script.onload = () => {
       const map = new google.maps.Map(mapRef.current!, {
