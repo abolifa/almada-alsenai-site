@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Mail, Menu, X } from "lucide-react";
+import { FaFacebookF } from "react-icons/fa";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -18,10 +19,7 @@ const Navbar = () => {
   ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) setScrolled(true);
-      else setScrolled(false);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -52,7 +50,7 @@ const Navbar = () => {
       }`}
     >
       <header className="container mx-auto px-5 xl:px-0 flex items-center justify-between transition-colors duration-300">
-        <Link to="/" className="w-18 h-18 flex items-center justify-center">
+        <Link to="/" className="w-20 h-20 flex items-center justify-center">
           <img
             src="/images/logo.png"
             className="w-full h-full object-contain"
@@ -60,7 +58,7 @@ const Navbar = () => {
           />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-8">
           {navs.map((n) => (
             <a
               key={n.title + n.path}
@@ -77,7 +75,33 @@ const Navbar = () => {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4 md:gap-6">
+          <a
+            href="https://www.facebook.com/almdaalsenaee"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`flex items-center justify-center w-9 h-9 rounded-full border transition ${
+              scrolled
+                ? "border-black/20 text-black hover:bg-black/10"
+                : "border-white/30 text-white hover:bg-white/10"
+            }`}
+          >
+            <FaFacebookF className="w-4 h-4" />
+          </a>
+
+          <a
+            href="mailto:info@almada-alsenae.com.ly"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`flex items-center justify-center w-9 h-9 rounded-full border transition ${
+              scrolled
+                ? "border-black/20 text-black hover:bg-black/10"
+                : "border-white/30 text-white hover:bg-white/10"
+            }`}
+          >
+            <Mail className="w-4 h-4" />
+          </a>
+
           <button
             onClick={() => setOpen((v) => !v)}
             className={`md:hidden p-2 rounded-md transition ${
