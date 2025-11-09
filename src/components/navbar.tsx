@@ -9,14 +9,22 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // const navs = [
+
   const navs = [
-    { title: "الرئيسية", path: "#hero" },
-    { title: "من نحن", path: "#about" },
-    { title: "رسالتنا", path: "#vision-mission" },
-    { title: "خدماتنا", path: "#services" },
-    { title: "أعمالنا", path: "#projects" },
-    { title: "تواصل معنا", path: "#contact" },
-  ];
+  { title: "الرئيسية", path: "#hero" },
+  { title: "من نحن", path: "#about" },
+  { title: "خدماتنا", path: "#services" },
+  { title: "تواصل معنا", path: "#contact" },
+];
+
+  //   { title: "الرئيسية", path: "#hero" },
+  //   { title: "من نحن", path: "#about" },
+  //   { title: "رسالتنا", path: "#vision-mission" },
+  //   { title: "خدماتنا", path: "#services" },
+  //   { title: "أعمالنا", path: "#projects" },
+  //   { title: "تواصل معنا", path: "#contact" },
+  // ];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -46,17 +54,26 @@ const Navbar = () => {
   return (
     <div
       className={`fixed top-0 left-0 w-full h-18 flex items-center z-50 transition-all duration-300 backdrop-blur-md ${
-        scrolled ? "bg-white/65 shadow text-black" : "bg-transparent text-white"
+        scrolled ? "bg-white/80 backdrop-blur-lg shadow text-black" : "bg-gradient-to-b from-black/70 to-transparent text-white"
       }`}
     >
       <header className="container mx-auto px-5 xl:px-0 flex items-center justify-between transition-colors duration-300">
-        <Link to="/" className="w-20 h-20 flex items-center justify-center">
+        {/* <Link to="/" className="w-20 h-20 flex items-center justify-center">
           <img
             src="/images/logo.png"
             className="w-full h-full object-contain"
             alt="Logo"
           />
-        </Link>
+        </Link> */}
+        <Link to="/" className="flex items-center gap-2">
+  <img
+    src="/images/logo.png"
+    alt="شعار شركة أنوار القلعة"
+    className="w-14 h-14 object-contain"
+  />
+  <span className="font-semibold text-lg">أنوار القلعة</span>
+</Link>
+
 
         <nav className="hidden md:flex items-center gap-8">
           {navs.map((n) => (
@@ -66,8 +83,8 @@ const Navbar = () => {
               onClick={(e) => handleScrollOrNavigate(e, n.path)}
               className={`text-lg font-light transition-colors ${
                 scrolled
-                  ? "text-black hover:text-orange-500 hover:underline underline-offset-4"
-                  : "text-white hover:text-orange-400 hover:underline underline-offset-4"
+                  ? "text-black hover:text-[#D4AF37] hover:underline underline-offset-4"
+                  : "text-white hover:text-[#D4AF37] hover:underline underline-offset-4"
               }`}
             >
               {n.title}
@@ -77,7 +94,7 @@ const Navbar = () => {
 
         <div className="flex items-center gap-4 md:gap-6">
           <a
-            href="https://www.facebook.com/almdaalsenaee"
+            href="https://www.facebook.com/anwaralqalaa"
             target="_blank"
             rel="noopener noreferrer"
             className={`flex items-center justify-center w-9 h-9 rounded-full border transition ${
@@ -90,7 +107,7 @@ const Navbar = () => {
           </a>
 
           <a
-            href="mailto:info@almada-alsenae.com.ly"
+            href="mailto:info@anwar-alqalaa.com.ly"
             target="_blank"
             rel="noopener noreferrer"
             className={`flex items-center justify-center w-9 h-9 rounded-full border transition ${
