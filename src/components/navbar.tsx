@@ -54,7 +54,7 @@ const Navbar = () => {
           <img
             src="/images/logo.png"
             alt="شعار شركة أنوار القلعة"
-            className="w-30 h-30 object-contain drop-shadow-[0_0_8px_rgba(212,175,55,0.2)]"
+            className="w-12 h-12 object-contain drop-shadow-[0_0_8px_rgba(212,175,55,0.2)]"
           />
           <span
             className={`font-semibold text-lg tracking-wide transition-colors ${
