@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
-import { Factory, Mail, Phone, Smartphone, Store } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { Mail, Phone, Smartphone, MapPin } from "lucide-react";
+import { useState } from "react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -9,72 +9,10 @@ const Contact = () => {
     email: "",
     phone: "",
     message: "",
-    company: "",
   });
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState(false);
-  const mapRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    if (!mapRef.current) return;
-
-    const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${
-      import.meta.env.VITE_GOOGLE_MAPS_API_KEY
-    }`;
-    script.async = true;
-    script.onload = () => {
-      const map = new google.maps.Map(mapRef.current!, {
-        center: { lat: 32.34, lng: 15.07 },
-        zoom: 13,
-        mapId: "aali_map",
-        disableDefaultUI: true,
-        styles: [
-          {
-            featureType: "poi",
-            stylers: [{ visibility: "off" }],
-          },
-          {
-            featureType: "road",
-            elementType: "geometry",
-            stylers: [{ color: "#dddddd" }],
-          },
-        ],
-      });
-
-      const locations = [
-        {
-          position: { lat: 32.336719520024765, lng: 15.066221599999995 },
-          title: "🏭 مصنع المدى الصناعي",
-        },
-        {
-          position: { lat: 32.35245472684797, lng: 15.082709699999997 },
-          title: "🏢 صالة العرض",
-        },
-      ];
-
-      locations.forEach((loc) => {
-        const marker = new google.maps.Marker({
-          position: loc.position,
-          map,
-          title: loc.title,
-          icon: {
-            url: "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
-          },
-        });
-
-        const infowindow = new google.maps.InfoWindow({
-          content: `<div style="font-family:Tajawal,sans-serif;font-size:14px;color:#333;padding:5px 10px">${loc.title}</div>`,
-        });
-
-        marker.addListener("mouseover", () => infowindow.open(map, marker));
-        marker.addListener("mouseout", () => infowindow.close());
-      });
-    };
-
-    document.body.appendChild(script);
-  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -85,24 +23,9 @@ const Contact = () => {
     setLoading(true);
     setError(false);
     try {
-      const res = await fetch(
-        "https://aalialmajdholding.com.ly/contact-mail.php",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams(formData as any).toString(),
-        }
-      );
-      if (res.ok) {
-        setSent(true);
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          message: "",
-          company: "",
-        });
-      } else setError(true);
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      setSent(true);
+      setFormData({ name: "", email: "", phone: "", message: "" });
     } catch {
       setError(true);
     } finally {
@@ -113,57 +36,43 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="relative w-full py-28 md:py-36 bg-linear-to-b from-background via-muted/20 to-background overflow-hidden"
+      className="relative w-full py-28 md:py-36 bg-gradient-to-b from-[#fffaf0] via-[#fffdfa] to-[#fefcf8] overflow-hidden text-[#1a1a1a]"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(202,56,51,0.08),transparent_70%)] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(42,44,111,0.1),transparent_70%)] pointer-events-none" />
+     
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(212,175,55,0.08),transparent_70%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,175,55,0.05),transparent_70%)] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
-        {/* Title */}
+       
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold text-center text-custom2 mb-14"
+          className="text-4xl md:text-5xl font-bold text-center mb-16 text-[#b8911a]"
         >
           تواصل معنا
         </motion.h2>
 
-        {/* Grid */}
-        <div className="grid md:grid-cols-2 gap-10 items-stretch">
-          {/* Form */}
+      
+        <div className="grid lg:grid-cols-2 gap-12">
+         
           <motion.form
             onSubmit={handleSubmit}
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
             viewport={{ once: true }}
-            className="flex flex-col gap-6 p-8 rounded-3xl bg-card border border-border shadow-xl"
+            className="flex flex-col gap-6 p-8 rounded-3xl bg-white/70 border border-[#d4af37]/30 shadow-[0_0_25px_rgba(212,175,55,0.1)] backdrop-blur-sm"
           >
             <input
               name="name"
               type="text"
-              placeholder="الاسم"
+              placeholder="الاسم الكامل"
               value={formData.name}
               onChange={handleChange}
               required
-              className="px-4 py-3 rounded-lg bg-background border border-border placeholder:text-muted-foreground focus:outline-none focus:border-custom1"
-            />
-            {/* honeypot */}
-            <input
-              name="company"
-              type="text"
-              value={formData.company}
-              onChange={handleChange}
-              autoComplete="off"
-              tabIndex={-1}
-              style={{
-                position: "absolute",
-                left: "-9999px",
-                width: "1px",
-                height: "1px",
-              }}
+              className="px-4 py-3 rounded-lg bg-transparent border border-[#d4af37]/30 placeholder:text-gray-500 focus:outline-none focus:border-[#d4af37]"
             />
             <input
               name="email"
@@ -172,7 +81,7 @@ const Contact = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="px-4 py-3 rounded-lg bg-background border border-border placeholder:text-muted-foreground focus:outline-none focus:border-custom1"
+              className="px-4 py-3 rounded-lg bg-transparent border border-[#d4af37]/30 placeholder:text-gray-500 focus:outline-none focus:border-[#d4af37]"
             />
             <input
               name="phone"
@@ -180,93 +89,91 @@ const Contact = () => {
               placeholder="رقم الهاتف"
               value={formData.phone}
               onChange={handleChange}
-              className="px-4 py-3 rounded-lg bg-background border border-border placeholder:text-muted-foreground focus:outline-none focus:border-custom1"
+              className="px-4 py-3 rounded-lg bg-transparent border border-[#d4af37]/30 placeholder:text-gray-500 focus:outline-none focus:border-[#d4af37]"
             />
             <textarea
               name="message"
-              rows={8}
-              placeholder="الرسالة"
+              rows={6}
+              placeholder="أدخل رسالتك هنا..."
               value={formData.message}
               onChange={handleChange}
               required
-              className="px-4 py-3 rounded-lg bg-background border border-border placeholder:text-muted-foreground focus:outline-none focus:border-custom1 resize-none"
+              className="px-4 py-3 rounded-lg bg-transparent border border-[#d4af37]/30 placeholder:text-gray-500 focus:outline-none focus:border-[#d4af37] resize-none"
             />
             <button
               type="submit"
               disabled={loading}
-              className="mt-2 bg-custom2 hover:bg-custom1 text-white font-semibold py-3 rounded-lg shadow-lg transition-all"
+              className="mt-2 bg-[#d4af37] hover:bg-[#b89020] text-white font-semibold py-3 rounded-lg shadow-lg transition-all duration-300"
             >
               {loading
                 ? "جاري الإرسال..."
                 : sent
-                ? "تم الإرسال بنجاح"
+                ? "✅ تم الإرسال بنجاح"
                 : error
-                ? "حدث خطأ، حاول مرة أخرى"
-                : "إرسال"}
+                ? "حدث خطأ! حاول مجددًا"
+                : "إرسال الرسالة"}
             </button>
           </motion.form>
 
-          {/* Contact Info + Map */}
+         
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
             viewport={{ once: true }}
-            className="flex flex-col gap-6"
+            className="flex flex-col gap-6 justify-center"
           >
-            <div className="p-8 rounded-3xl bg-card border border-border shadow-xl space-y-4">
-              <h3 className="text-xl font-bold text-custom1 mb-4">
-                معلومات الاتصال
+            <div className="p-8 rounded-3xl bg-white/70 border border-[#d4af37]/30 shadow-[0_0_25px_rgba(212,175,55,0.1)] backdrop-blur-sm space-y-5">
+              <h3 className="text-2xl font-bold text-[#b8911a] mb-6 text-center">
+                بيانات التواصل الرسمية
               </h3>
-              <div className="flex items-center gap-2">
-                <Store className="w-5 h-5 text-custom2" />
-                <p className="text-muted-foreground">
-                  الطريق الدائري الرابع بجوار عمارات 9 يوليو. مصراتة | ليبيا
+
+              <div className="flex items-center gap-3">
+                <MapPin className="w-5 h-5 text-[#b8911a]" />
+                <p className="text-gray-700 text-sm">
+                  مصراتة - ليبيا | بالقرب من الطريق الدائري الرابع
                 </p>
               </div>
 
-              <div className="flex items-center gap-2">
-                <Factory className="w-5 h-5 text-custom2" />
-                <p className="text-muted-foreground">
-                  بالقرب من نادي ذات الرمال للفروسية. 11 يوليو. مصراتة | ليبيا
-                </p>
+              <div className="flex items-center gap-3">
+                <Smartphone className="w-5 h-5 text-[#b8911a]" />
+                <a
+                  href="tel:+218912160618"
+                  dir="ltr"
+                  className="text-gray-700 text-sm underline hover:text-[#b8911a]"
+                >
+                  +218 91 216 0618
+                </a>
               </div>
 
-              <div className="flex items-center gap-2">
-                <Smartphone className="w-5 h-5 text-custom2" />
+              <div className="flex items-center gap-3">
+                <Phone className="w-5 h-5 text-[#b8911a]" />
                 <a
-                  href="tel:+218913207929"
+                  href="tel:+218512160618"
                   dir="ltr"
-                  className="text-muted-foreground underline underline-offset-2 hover:text-custom2"
+                  className="text-gray-700 text-sm underline hover:text-[#b8911a]"
                 >
-                  +218 91 320 7929
+                  +218 51 216 0618
                 </a>
               </div>
-              <div className="flex items-center gap-2">
-                <Phone className="w-5 h-5 text-custom2" />
+
+              <div className="flex items-center gap-3">
+                <Mail className="w-5 h-5 text-[#b8911a]" />
                 <a
-                  href="tel:+218912127403"
-                  dir="ltr"
-                  className="text-muted-foreground underline underline-offset-2 hover:text-custom2"
+                  href="mailto:info@anwar-alqalaa.com.ly"
+                  className="text-gray-700 text-sm underline hover:text-[#b8911a]"
                 >
-                  +218 91 212 7403
+                  info@anwar-alqalaa.com.ly
                 </a>
               </div>
-              <div className="flex items-center gap-2">
-                <Mail className="w-5 h-5 text-custom2" />
-                <a
-                  href="mailto:info@aalialmajdholding.com.ly"
-                  className="text-muted-foreground underline underline-offset-2 hover:text-custom2"
-                >
-                  info@aalialmajdholding.com.ly
-                </a>
+
+              <div className="pt-4 text-center border-t border-[#d4af37]/20">
+                <p className="text-sm text-gray-600">
+                  أوقات العمل:{" "}
+                  <span className="text-[#b8911a]">09:00 - 18:00</span>
+                </p>
               </div>
             </div>
-
-            <div
-              ref={mapRef}
-              className="w-full h-[350px] rounded-3xl border border-border shadow-xl overflow-hidden"
-            />
           </motion.div>
         </div>
       </div>

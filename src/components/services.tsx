@@ -5,20 +5,18 @@ const Services = () => {
   return (
     <section
       id="services"
-      className="relative w-full bg-linear-to-b from-background via-muted/20 to-background overflow-hidden"
+      className="relative w-full bg-gradient-to-b from-[#faf9f7] via-[#fffefc] to-[#f8f6f2] overflow-hidden"
     >
-      {/* Decorative background */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(202,56,51,0.08),transparent_70%)] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(42,44,111,0.1),transparent_70%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(212,175,55,0.07),transparent_70%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(0,0,0,0.05),transparent_70%)] pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10 py-24 md:py-32 text-center">
-        {/* Animated Section Title */}
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold text-custom2 mb-6"
+          className="text-4xl md:text-5xl font-bold text-[#1a1a1a] mb-6 tracking-tight"
         >
           خدماتنا
         </motion.h2>
@@ -28,49 +26,62 @@ const Services = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
           viewport={{ once: true }}
-          className="max-w-3xl mx-auto text-muted-foreground leading-relaxed text-lg"
+          className="max-w-3xl mx-auto text-gray-600 leading-relaxed text-lg"
         >
-          نقدم مجموعة شاملة من الحلول المتكاملة في مجال أنظمة الألومنيوم والـPVC
-          لتلبية احتياجات المشاريع السكنية والتجارية والصناعية وفق أعلى معايير
-          الجودة.
+          نقدم في شركة{" "}
+          <span className="text-[#d4af37] font-semibold">أنوار القلعة</span>{" "}
+          مجموعة متكاملة من خدمات استيراد السيارات وقطع الغيار والشحن اللوجستي،
+          بتجربة تجمع بين الاحترافية والجودة.
         </motion.p>
       </div>
 
-      {/* Service Sections */}
-      <div className="relative z-10">
+      <div className="relative z-10 space-y-12">
         <ServiceSection
-          id="windows"
-          title="تصنيع الأبواب والنوافذ"
-          description="تصميم وتصنيع أنظمة الألومنيوم والـPVC بمواصفات أوروبية عالية الجودة، مع خيارات متعددة للألوان والعزل الحراري والصوتي، لتحقيق أفضل أداء ووظيفة جمالية."
-          image="/images/services/service-1.webp"
-          color="rgba(202,56,51,0.9)"
+          id="cars"
+          title="استيراد السيارات"
+          description="نوفر سيارات حديثة ومستعملة من أشهر العلامات التجارية العالمية، مع متابعة كاملة لإجراءات الشحن والتسليم حتى وصولها إلى عملائنا داخل ليبيا."
+          image="/images/services/ser.1.jpg"
+          color="rgba(212,175,55,0.9)"
         />
 
         <ServiceSection
-          id="facades"
-          title="الواجهات الزجاجية"
-          description="تنفيذ أنظمة الواجهات الزجاجية الحديثة (Curtain Wall) بمختلف المقاسات والتصاميم الهندسية، باستخدام أفضل المواد التي تضمن العزل الحراري والصوتي والمتانة."
-          image="/images/services/service-2.jpg"
-          color="rgba(42,44,111,0.9)"
+          id="parts"
+          title="استيراد قطع الغيار الأصلية"
+          description="نقدم مجموعة واسعة من قطع الغيار الأصلية والمضمونة، تشمل الميكانيكية والكهربائية والإلكترونية، لتلبية احتياجات الأفراد وورش الصيانة والشركات."
+          image="/images/services/ser.2.jpg"
+          color="rgba(26,26,26,0.9)"
           reversed
         />
 
         <ServiceSection
-          id="partitions"
-          title="تقسيمات المكاتب"
-          description="نقدم حلول تقسيم مكاتب مرنة وعصرية من الألومنيوم والزجاج، تمنح المساحات طابعاً أنيقاً ومنظماً يعزز بيئة العمل الإنتاجية."
-          image="/images/services/service-3.webp"
-          color="rgba(202,56,51,0.9)"
+          id="logistics"
+          title="الشحن والتخليص الجمركي"
+          description="فريقنا المتخصص يتولى عمليات الشحن والتخليص الجمركي بدقة واحترافية عالية، لضمان سرعة التسليم وسلامة الشحنات من المصدر إلى الوجهة."
+          image="/images/services/ser3.jpg"
+          color="rgba(212,175,55,0.9)"
         />
 
         <ServiceSection
-          id="installation"
-          title="التوريد والتركيب والصيانة"
-          description="فريقنا الفني المتخصص يقدم خدمات التوريد والتركيب والصيانة لجميع المشاريع مع التزام كامل بالجودة والدقة في التنفيذ."
-          image="/images/services/service-4.jpg"
-          color="rgba(42,44,111,0.9)"
+          id="contracts"
+          title="عروض توريد خاصة"
+          description="نوفر حلولًا تجارية مخصصة للشركات والمؤسسات، تشمل التوريد بالجملة، والعقود السنوية بأسعار تنافسية وخدمات شاملة."
+          image="/images/services/ser.4.jpg"
+          color="rgba(26,26,26,0.9)"
           reversed
         />
+      </div>
+
+      <div className="text-center mt-20 mb-12 relative z-10">
+        <motion.a
+          href="#contact"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="inline-block px-12 py-4 rounded-full text-white font-semibold text-lg shadow-lg bg-[#d4af37] hover:bg-[#b89020] transition-all duration-300"
+        >
+          تواصل معنا لمزيد من التفاصيل
+        </motion.a>
       </div>
     </section>
   );

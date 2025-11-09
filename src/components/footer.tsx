@@ -10,9 +10,7 @@ const Footer = () => {
   const quickLinks = [
     { label: "الرئيسية", href: "#hero" },
     { label: "من نحن", href: "#about" },
-    { label: "رسالتنا", href: "#vision-mission" },
     { label: "خدماتنا", href: "#services" },
-    { label: "أعمالنا", href: "#projects" },
     { label: "تواصل معنا", href: "#contact" },
   ];
 
@@ -25,15 +23,11 @@ const Footer = () => {
   return (
     <footer
       dir="rtl"
-      className="relative w-full bg-linear-to-b from-background via-muted/10 to-background border-t border-border pt-24 overflow-hidden"
+      className="relative w-full bg-gradient-to-b from-[#fffaf0] via-[#fefcf9] to-[#faf8f4] border-t border-[#d4af37]/30 pt-24 overflow-hidden"
     >
-      {/* Background accents */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(202,56,51,0.08),transparent_70%)] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(42,44,111,0.08),transparent_70%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,175,55,0.08),transparent_70%)] pointer-events-none" />
 
-      {/* Grid Content */}
       <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
-        {/* Logo & Overview */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -43,26 +37,25 @@ const Footer = () => {
         >
           <img
             src="/images/logo.png"
-            alt="مصنع المدى الصناعي"
-            className="w-36 md:w-40 h-auto"
+            alt="شركة أنوار القلعة"
+            className="w-36 md:w-44 h-auto drop-shadow-[0_0_15px_rgba(212,175,55,0.4)]"
           />
-          <p className="text-muted-foreground leading-relaxed max-w-xs">
-            تأسس{" "}
-            <span className="text-foreground font-medium">
-              مصنع المدى الصناعي
+          <p className="text-gray-700 leading-relaxed max-w-xs text-sm">
+            <span className="font-semibold text-[#b8911a]">
+              شركة أنوار القلعة
             </span>{" "}
-            عام 1999 كمؤسسة رائدة في تصنيع أنظمة الألومنيوم والـPVC للأبواب
-            والنوافذ.
+            لاستيراد وسائل النقل وملحقاتها – نعمل على توفير سيارات وقطع غيار
+            أصلية من كبرى الشركات العالمية بمعايير الجودة والثقة.
           </p>
-          <div className="flex gap-3 pt-2">
+          <div className="flex gap-3 pt-3">
             {[
               {
-                href: "https://www.facebook.com/almdaalsenaee",
+                href: "https://www.facebook.com/",
                 icon: <FaFacebookF />,
                 label: "Facebook",
               },
               {
-                href: "mailto:info@almada.ly",
+                href: "mailto:info@anwar-alqalaa.com.ly",
                 icon: <FaEnvelope />,
                 label: "البريد الإلكتروني",
               },
@@ -73,7 +66,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.label}
-                className="w-10 h-10 bg-custom2 flex items-center justify-center rounded-full border border-border text-white hover:bg-custom1 hover:text-white transition"
+                className="w-10 h-10 bg-[#d4af37] flex items-center justify-center rounded-full text-white hover:bg-[#b89020] transition-all shadow-md"
               >
                 {s.icon}
               </a>
@@ -81,29 +74,21 @@ const Footer = () => {
           </div>
         </motion.div>
 
-        {/* Quick Links */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
           viewport={{ once: true }}
         >
-          <h4 className="text-xl font-bold text-custom2 mb-5">روابط سريعة</h4>
-          <ul className="space-y-3 text-muted-foreground">
+          <h4 className="text-xl font-bold text-[#b8911a] mb-5">روابط سريعة</h4>
+          <ul className="space-y-3 text-gray-600">
             {quickLinks.map((link) => (
-              <li key={link.href} className="flex items-center gap-2">
-                <span>
-                  <svg
-                    className="inline-block w-2 h-2 mr-2 fill-current text-custom1"
-                    viewBox="0 0 8 8"
-                  >
-                    <circle cx="4" cy="4" r="4" />
-                  </svg>
-                </span>
+              <li key={link.href}>
                 <a
                   href={link.href}
-                  className="hover:text-custom1 hover:underline transition-colors duration-300"
+                  className="flex items-center gap-2 hover:text-[#b8911a] transition-all duration-200"
                 >
+                  <span className="inline-block w-2 h-2 bg-[#d4af37] rounded-full"></span>
                   {link.label}
                 </a>
               </li>
@@ -111,50 +96,48 @@ const Footer = () => {
           </ul>
         </motion.div>
 
-        {/* Contact Info */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <h4 className="text-xl font-bold text-custom2 mb-5">
-            معلومات الاتصال
+          <h4 className="text-xl font-bold text-[#b8911a] mb-5">
+            معلومات التواصل
           </h4>
-          <ul className="space-y-4 text-muted-foreground">
+          <ul className="space-y-4 text-gray-700 text-sm">
             <li className="flex items-center gap-3">
-              <FaPhoneAlt className="text-custom1" />
+              <FaPhoneAlt className="text-[#b8911a]" />
               <a
-                href="tel:+218913207929"
+                href="tel:+218912160618"
                 dir="ltr"
-                className="hover:text-custom1 transition"
+                className="hover:text-[#b8911a] transition"
               >
-                +218 91 320 7929
+                +218 91 216 0618
               </a>
             </li>
             <li className="flex items-center gap-3">
-              <FaPhoneAlt className="text-custom1" />
+              <FaPhoneAlt className="text-[#b8911a]" />
               <a
-                href="tel:+218912127403"
+                href="tel:+218512160618"
                 dir="ltr"
-                className="hover:text-custom1 transition"
+                className="hover:text-[#b8911a] transition"
               >
-                +218 91 212 7403
+                +218 51 216 0618
               </a>
             </li>
             <li className="flex items-center gap-3">
-              <FaEnvelope className="text-custom1" />
+              <FaEnvelope className="text-[#b8911a]" />
               <a
-                href="mailto:info@almada.ly"
-                className="hover:text-custom1 transition"
+                href="mailto:info@anwar-alqalaa.com.ly"
+                className="hover:text-[#b8911a] transition"
               >
-                info@almada.ly
+                info@anwar-alqalaa.com.ly
               </a>
             </li>
           </ul>
         </motion.div>
 
-        {/* Newsletter */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -163,16 +146,16 @@ const Footer = () => {
           className="flex flex-col justify-between"
         >
           <div>
-            <h4 className="text-xl font-bold text-custom2 mb-4">
-              اشترك في النشرة الإخبارية
+            <h4 className="text-xl font-bold text-[#b8911a] mb-4">
+              اشترك في نشرتنا
             </h4>
-            <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
-              تابع أحدث مشاريع مصنع المدى التي تجمع بين التصميم العصري والجودة
-              العالية.
+            <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+              تصلك آخر العروض وأخبار السيارات الجديدة مباشرة إلى بريدك
+              الإلكتروني.
             </p>
             <form
               onSubmit={handleSubscribe}
-              className="flex flex-col sm:flex-row rounded-md overflow-hidden border border-border bg-card shadow-sm"
+              className="flex flex-col sm:flex-row rounded-lg overflow-hidden border border-[#d4af37]/30 bg-white/60 shadow-sm focus-within:border-[#d4af37] transition-all"
             >
               <input
                 type="email"
@@ -180,11 +163,11 @@ const Footer = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 placeholder="أدخل بريدك الإلكتروني"
-                className="flex-1 px-4 py-3 text-sm bg-transparent focus:outline-none"
+                className="flex-1 px-4 py-3 text-sm bg-transparent text-gray-700 placeholder:text-gray-500 focus:outline-none"
               />
               <button
                 type="submit"
-                className="bg-custom2 hover:bg-custom1 text-white px-6 py-3 text-sm font-medium transition"
+                className="bg-[#d4af37] hover:bg-[#b89020] text-white px-6 py-3 text-sm font-medium transition-all duration-300"
               >
                 اشترك
               </button>
@@ -192,8 +175,9 @@ const Footer = () => {
           </div>
         </motion.div>
       </div>
-      <div className="mt-16 text-center text-sm text-white bg-custom2 border-t border-border py-6 flex items-center justify-center">
-        © {new Date().getFullYear()} مصنع المدى الصناعي – جميع الحقوق محفوظة.
+
+      <div className="mt-20 text-center text-sm text-white bg-[#b8911a] py-5 shadow-[0_-4px_10px_rgba(212,175,55,0.3)]">
+        © {new Date().getFullYear()} شركة أنوار القلعة – جميع الحقوق محفوظة.
       </div>
     </footer>
   );

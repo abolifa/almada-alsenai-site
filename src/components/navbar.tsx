@@ -9,22 +9,12 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // const navs = [
-
   const navs = [
-  { title: "الرئيسية", path: "#hero" },
-  { title: "من نحن", path: "#about" },
-  { title: "خدماتنا", path: "#services" },
-  { title: "تواصل معنا", path: "#contact" },
-];
-
-  //   { title: "الرئيسية", path: "#hero" },
-  //   { title: "من نحن", path: "#about" },
-  //   { title: "رسالتنا", path: "#vision-mission" },
-  //   { title: "خدماتنا", path: "#services" },
-  //   { title: "أعمالنا", path: "#projects" },
-  //   { title: "تواصل معنا", path: "#contact" },
-  // ];
+    { title: "الرئيسية", path: "#hero" },
+    { title: "من نحن", path: "#about" },
+    { title: "خدماتنا", path: "#services" },
+    { title: "تواصل معنا", path: "#contact" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -53,27 +43,27 @@ const Navbar = () => {
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full h-18 flex items-center z-50 transition-all duration-300 backdrop-blur-md ${
-        scrolled ? "bg-white/80 backdrop-blur-lg shadow text-black" : "bg-gradient-to-b from-black/70 to-transparent text-white"
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-[#fffaf0]/90 backdrop-blur-md shadow-[0_2px_12px_rgba(0,0,0,0.08)] border-b border-[#d4af37]/20"
+          : "bg-gradient-to-b from-[#faf8f4]/20 to-transparent backdrop-blur-sm"
       }`}
     >
-      <header className="container mx-auto px-5 xl:px-0 flex items-center justify-between transition-colors duration-300">
-        {/* <Link to="/" className="w-20 h-20 flex items-center justify-center">
+      <header className="container mx-auto px-5 xl:px-0 flex items-center justify-between h-[80px] transition-colors duration-300">
+        <Link to="/" className="flex items-center gap-2 group">
           <img
             src="/images/logo.png"
-            className="w-full h-full object-contain"
-            alt="Logo"
+            alt="شعار شركة أنوار القلعة"
+            className="w-30 h-30 object-contain drop-shadow-[0_0_8px_rgba(212,175,55,0.2)]"
           />
-        </Link> */}
-        <Link to="/" className="flex items-center gap-2">
-  <img
-    src="/images/logo.png"
-    alt="شعار شركة أنوار القلعة"
-    className="w-14 h-14 object-contain"
-  />
-  <span className="font-semibold text-lg">أنوار القلعة</span>
-</Link>
-
+          <span
+            className={`font-semibold text-lg tracking-wide transition-colors ${
+              scrolled ? "text-[#1a1a1a]" : "text-white"
+            } group-hover:text-[#b8911a]`}
+          >
+            أنوار القلعة
+          </span>
+        </Link>
 
         <nav className="hidden md:flex items-center gap-8">
           {navs.map((n) => (
@@ -81,10 +71,10 @@ const Navbar = () => {
               key={n.title + n.path}
               href={n.path}
               onClick={(e) => handleScrollOrNavigate(e, n.path)}
-              className={`text-lg font-light transition-colors ${
+              className={`text-lg font-medium transition-all duration-300 ${
                 scrolled
-                  ? "text-black hover:text-[#D4AF37] hover:underline underline-offset-4"
-                  : "text-white hover:text-[#D4AF37] hover:underline underline-offset-4"
+                  ? "text-[#1a1a1a] hover:text-[#b8911a] hover:underline underline-offset-8"
+                  : "text-white hover:text-[#d4af37] hover:underline underline-offset-8"
               }`}
             >
               {n.title}
@@ -92,14 +82,14 @@ const Navbar = () => {
           ))}
         </nav>
 
-        <div className="flex items-center gap-4 md:gap-6">
+        <div className="flex items-center gap-3 md:gap-5">
           <a
             href="https://www.facebook.com/anwaralqalaa"
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex items-center justify-center w-9 h-9 rounded-full border transition ${
+            className={`flex items-center justify-center w-9 h-9 rounded-full border transition-all duration-300 ${
               scrolled
-                ? "border-black/20 text-black hover:bg-black/10"
+                ? "border-[#b8911a]/30 text-[#1a1a1a] hover:bg-[#b8911a]/10"
                 : "border-white/30 text-white hover:bg-white/10"
             }`}
           >
@@ -108,11 +98,9 @@ const Navbar = () => {
 
           <a
             href="mailto:info@anwar-alqalaa.com.ly"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`flex items-center justify-center w-9 h-9 rounded-full border transition ${
+            className={`flex items-center justify-center w-9 h-9 rounded-full border transition-all duration-300 ${
               scrolled
-                ? "border-black/20 text-black hover:bg-black/10"
+                ? "border-[#b8911a]/30 text-[#1a1a1a] hover:bg-[#b8911a]/10"
                 : "border-white/30 text-white hover:bg-white/10"
             }`}
           >
@@ -121,10 +109,10 @@ const Navbar = () => {
 
           <button
             onClick={() => setOpen((v) => !v)}
-            className={`md:hidden p-2 rounded-md transition ${
+            className={`md:hidden p-2 rounded-md transition-all duration-300 ${
               scrolled
-                ? "hover:bg-black/5 text-black"
-                : "hover:bg-white/10 text-white"
+                ? "text-[#1a1a1a] hover:bg-[#b8911a]/10"
+                : "text-white hover:bg-white/10"
             }`}
             aria-label="Menu"
           >
@@ -133,28 +121,28 @@ const Navbar = () => {
         </div>
       </header>
 
-      {open && (
-        <div
-          className={`absolute top-20 left-0 w-full md:hidden shadow-lg backdrop-blur-lg transition ${
-            scrolled ? "bg-white/95 text-black" : "bg-black/90 text-white"
-          }`}
-        >
-          <div className="flex flex-col items-center py-5 gap-4">
-            {navs.map((n) => (
-              <a
-                key={n.title + n.path}
-                href={n.path}
-                onClick={(e) => handleScrollOrNavigate(e, n.path)}
-                className={`text-lg transition-colors ${
-                  scrolled ? "hover:text-orange-500" : "hover:text-amber-400"
-                }`}
-              >
-                {n.title}
-              </a>
-            ))}
-          </div>
+      <div
+        className={`absolute top-[80px] left-0 w-full md:hidden overflow-hidden transition-all duration-500 ease-in-out ${
+          open ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"
+        } ${
+          scrolled
+            ? "bg-[#fffaf0]/95 text-[#1a1a1a] border-t border-[#b8911a]/20"
+            : "bg-[#1a1a1a]/90 text-white"
+        }`}
+      >
+        <div className="flex flex-col items-center py-6 gap-4">
+          {navs.map((n) => (
+            <a
+              key={n.title + n.path}
+              href={n.path}
+              onClick={(e) => handleScrollOrNavigate(e, n.path)}
+              className="text-lg font-medium hover:text-[#b8911a] transition-all"
+            >
+              {n.title}
+            </a>
+          ))}
         </div>
-      )}
+      </div>
     </div>
   );
 };
